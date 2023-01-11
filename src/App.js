@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
-
 function App() {
 
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&lang=sp,es&appid=cb5afc911a9d809518289772f2de354e`
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=cb5afc911a9d809518289772f2de354e`;
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
@@ -39,7 +38,11 @@ function App() {
             {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
           </div>
           <div className="descripcion">
-            {data.weather ? <p>{data.weather[0].main}</p> : null}
+            {data.weather ? <p>{data.weather[0].description}</p> : null}
+          </div>
+          <div className="icono">
+            {data.weather ? <p><img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`} alt="icon" /></p> : null}
+
           </div>
         </div>
 
@@ -47,15 +50,15 @@ function App() {
           <div className="bottom">
             <div className="sensacion">
               {data.main ? <p className='bold'>{data.main.feels_like.toFixed()}°C</p> : null}
-              <p>Sensacion Termica</p>
+              <span>Sensacion Termica</span>
             </div>
             <div className="humedad">
               {data.main ? <p className='bold'>{data.main.humidity}%</p> : null}
-              <p>Humedad</p>
+              <span>Humedad</span>
             </div>
             <div className="viento">
               {data.wind ? <p className='bold'>{data.wind.speed.toFixed()} KPH</p> : null}
-              <p>Viento</p>
+              <span>Viento</span>
             </div>
           </div>
         }
