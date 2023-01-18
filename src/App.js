@@ -20,6 +20,7 @@ function App() {
 
   return (
     <div className="app">
+      <div className="container">
       <div className="search">
         <input
           value={location}
@@ -28,8 +29,6 @@ function App() {
           placeholder='Buscar ciudad...'
           type="text" />
       </div>
-
-      <div className="container">
         <div className="top">
           <div className="ubicacion">
             <p>{data.name}</p>
